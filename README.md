@@ -50,7 +50,7 @@ Authorization: Bearer SEU_TOKEN_AQUI
 
 ### 🧍 Usuários
 
-#### POST `/auth/signup`
+#### POST `/user/add`
 - Cadastra um novo usuário.
 - Body:
 ```json
