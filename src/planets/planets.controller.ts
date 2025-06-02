@@ -1,11 +1,10 @@
 import { Body, Controller, Get, Post, Query, UseGuards } from "@nestjs/common";
 import { PlanetsService } from "./planets.service";
 import { editPlanetDto, PlanetDto } from "src/dto/planets.dto";
-import { AuthGuard } from "src/auth/auth.guard";
+import { AuthGuard } from "../auth/auth.guard";
 
-@UseGuards(AuthGuard)
 @Controller('planets')
-
+@UseGuards(AuthGuard)
 export class PlanetsController{
     constructor(private planets: PlanetsService){}
     @Get('/list')
