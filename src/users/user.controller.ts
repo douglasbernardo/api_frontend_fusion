@@ -11,7 +11,7 @@ export class UserController {
 
     @Post('/add')
     async addUser(@Body() data: CreateUserDto,@Res() res: Response){
-        const addedUser = this.user.addUser(data)
+        const addedUser = await this.user.addUser(data)
         return res.status(201).json({
             'message': "Usuário criado com sucesso",
             'user': addedUser
