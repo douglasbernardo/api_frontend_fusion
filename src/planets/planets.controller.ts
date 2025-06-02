@@ -9,25 +9,37 @@ export class PlanetsController{
     constructor(private planets: PlanetsService){}
     @Get('/list')
     async getPlanets(){
-        return this.planets.listPlanets()
+        return await this.planets.listPlanets()
     }
     @Get()
     async getPlanet(@Query('id') id: any){                                                           
-        return this.planets.getPlanetById(id)
+        return await this.planets.getPlanetById(id)
     }
 
     @Post('/edit')
     async editPlanet(@Body() data: editPlanetDto){
-        return this.planets.editPlanet(data)
+        const editedPlanet = await this.planets.editPlanet(data)
+        return {
+            message: 'Planeta editado com sucesso',
+            data: editedPlanet
+        }
     }
 
     @Post('/add')
     async addPlanet(@Body() data: PlanetDto){
-        return this.planets.newPlanet(data)
+        const addedPlanet = await this.planets.newPlanet(data)
+        return {
+            message: 'Planeta adicionado com sucesso',
+            data: addedPlanet
+        }
     }
 
     @Get('/delete')
     async deletePlanet(@Query('id') id: string){
-        return this.planets.removePlanet(id)
+        const deletedPlanet = await this.planets.removePlanet(id)
+        return {
+            message: 'Planeta deletado com sucesso',
+            data: deletedPlanet
+        }
     }
 }

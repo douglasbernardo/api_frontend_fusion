@@ -10,22 +10,34 @@ export class starSystemController{
 
     @Post('/add')
     async newstarSystem(@Body() data: starSystemDto){
-        return this.system.addstarSystem(data)
+        const addedStarSystem = await this.system.addstarSystem(data)
+        return {
+            message: 'Sistema estelar criado com sucesso',
+            data: addedStarSystem
+        }
     }
     @Post('/edit')
     async editStarSystem(@Body() data: editstarSystemDto){
-        return this.system.editStarSystem(data)
+        const editedStarSystem = await this.system.editStarSystem(data)
+        return {
+            message: 'Sistema estelar editado com sucesso',
+            data: editedStarSystem
+        }
     }
     @Get('/list')
     async getAllStarSystems(){
-        return this.system.getAll()
+        return await this.system.getAll()
     }
     @Get()
     async getStarSystem(@Query('id') id: string){
-        return this.system.getStarSystem(id)
+        return await this.system.getStarSystem(id)
     }
     @Get('/delete')
     async deleteStarSystem(@Query('id') id:string){
-        return this.system.deletestarSystem(id)
+        const deletedStarSystem = await this.system.deletestarSystem(id)
+        return {
+            message: 'Sistema estelar deletado com sucesso',
+            data: deletedStarSystem
+        }
     }
 }

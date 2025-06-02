@@ -10,11 +10,19 @@ export class CharacterController{
 
     @Post('/add')
     async addCharacter(@Body() data: CharacterDto){
-        return this.characterService.newCharacter(data)
+        const addedCharacter = await this.characterService.newCharacter(data)
+        return {
+            message: 'Personagem criado com sucesso',
+            data: addedCharacter
+        }
     }
     @Post('/edit')
     async editCharacter(@Body() data: editCharacterDto){
-        return this.characterService.editCharacter(data)
+        const editedCharacter = await this.characterService.editCharacter(data)
+         return {
+            message: 'Personagem editado com sucesso',
+            data: editedCharacter
+        }
     }
 
     @Get('/list')
@@ -28,6 +36,10 @@ export class CharacterController{
     }
     @Get('/delete')
     async removeCharacter(@Query('id') id:string){
-        return this.characterService.deleteCharacter(id)
+        const deletedCharacter = await this.characterService.deleteCharacter(id)
+        return {
+            message: 'Personagem removido com sucesso',
+            data: deletedCharacter
+        }
     }
 } 

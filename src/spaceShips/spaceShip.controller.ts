@@ -11,14 +11,20 @@ export class SpaceShipController{
 
     @Post('/add')
     async addSpaceShip(@Body() data: spaceShipDto, @Res() res: Response){
-        const addedSpaceShip = this.spaceShip.newSpaceShip(data)
-        res.status(HttpStatus.ACCEPTED).json({"message":'Space Ship criado com sucesso'})
+        const addedSpaceShip = await this.spaceShip.newSpaceShip(data)
+        return {
+            message: 'Space Ship criada com sucesso',
+            data: addedSpaceShip
+        }
     }
 
     @Post('/edit')
     async editSpaceShip(@Body() data: editSpaceShipDto,@Res() res: Response){
-        const editSpaceShip = this.spaceShip.editSpaceShip(data)
-        res.status(HttpStatus.ACCEPTED).json({"message":'Space Ship editado com sucesso'})
+        const editedSpaceShip = await this.spaceShip.editSpaceShip(data)
+        return {
+            message: 'Space Ship editada com sucesso',
+            data: editedSpaceShip
+        }
     }
 
     @Get('/list')
@@ -27,12 +33,15 @@ export class SpaceShipController{
     }
     @Get()
     async getSpaceShip(@Query('id') id: string){
-        return this.spaceShip.getSpaceShip(id)
+        return await this.spaceShip.getSpaceShip(id)
     }
 
     @Get('/delete')
     async removeSpaceShip(@Query('id') id: string,@Res() res: Response){
-        const deletedSpaceShip =  this.spaceShip.deleteSpaceShip(id)
-        res.status(HttpStatus.ACCEPTED).send({"message":'Space Ship deletado com sucesso'})
+        const deletedSpaceShip = await this.spaceShip.deleteSpaceShip(id)
+        return {
+            message: 'Space Ship deletada com sucesso',
+            data: deletedSpaceShip
+        }
     }
 }
