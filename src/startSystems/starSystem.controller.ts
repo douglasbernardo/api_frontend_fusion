@@ -1,10 +1,10 @@
 import { Body, Controller, Get, Post, Query, UseGuards } from "@nestjs/common";
 import { starSystemService } from "./starSystem.service";
 import { editstarSystemDto, starSystemDto } from "src/dto/starsystem.dto";
-import { AuthGuard } from "src/auth/auth.guard";
+import { AuthGuard } from "../auth/auth.guard";
 
-@UseGuards(AuthGuard)
 @Controller('star-system')
+@UseGuards(AuthGuard)
 export class starSystemController{
     constructor(private system: starSystemService) {}
 

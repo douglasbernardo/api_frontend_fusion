@@ -4,8 +4,8 @@ import { editSpaceShipDto, spaceShipDto } from "src/dto/spaceShip.dto";
 import { Response } from 'express';
 import { AuthGuard } from '../auth/auth.guard'
 
-@UseGuards(AuthGuard)
 @Controller('space-ship')
+@UseGuards(AuthGuard)
 export class SpaceShipController{
     constructor(private spaceShip: spaceShipService){}
 
