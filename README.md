@@ -160,7 +160,7 @@ JWT_EXPIRES_IN=2m
 
 ## 🧑‍💻 Desenvolvido por
 
-Douglas – [LinkedIn](https://linkedin.com/in/seu-perfil)  
-Projeto pessoal com propósito de aprendizado usando NestJS + MongoDB
+Douglas – [LinkedIn](https://www.linkedin.com/in/douglas-b-melo-abb190164/)  
+Projeto pessoal desenvolvido como parte de um desafio da comunidade **Front End Fusion**.
 
 ---
