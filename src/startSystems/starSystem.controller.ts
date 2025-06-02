@@ -3,16 +3,15 @@ import { starSystemService } from "./starSystem.service";
 import { editstarSystemDto, starSystemDto } from "src/dto/starsystem.dto";
 import { AuthGuard } from "src/auth/auth.guard";
 
+@UseGuards(AuthGuard)
 @Controller('star-system')
 export class starSystemController{
     constructor(private system: starSystemService) {}
 
-    @UseGuards(AuthGuard)
     @Post('/add')
     async newstarSystem(@Body() data: starSystemDto){
         return this.system.addstarSystem(data)
     }
-    @UseGuards(AuthGuard)
     @Post('/edit')
     async editStarSystem(@Body() data: editstarSystemDto){
         return this.system.editStarSystem(data)
@@ -25,7 +24,6 @@ export class starSystemController{
     async getStarSystem(@Query('id') id: string){
         return this.system.getStarSystem(id)
     }
-    @UseGuards(AuthGuard)
     @Get('/delete')
     async deleteStarSystem(@Query('id') id:string){
         return this.system.deletestarSystem(id)

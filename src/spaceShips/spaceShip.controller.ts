@@ -4,24 +4,23 @@ import { editSpaceShipDto, spaceShipDto } from "src/dto/spaceShip.dto";
 import { Response } from 'express';
 import { AuthGuard } from '../auth/auth.guard'
 
+@UseGuards(AuthGuard)
 @Controller('space-ship')
 export class SpaceShipController{
     constructor(private spaceShip: spaceShipService){}
 
-    @UseGuards(AuthGuard)
     @Post('/add')
     async addSpaceShip(@Body() data: spaceShipDto, @Res() res: Response){
         const addedSpaceShip = this.spaceShip.newSpaceShip(data)
-        res.status(HttpStatus.ACCEPTED).json({"message":'Space Ship editado com sucesso'})
+        res.status(HttpStatus.ACCEPTED).json({"message":'Space Ship criado com sucesso'})
     }
-    @UseGuards(AuthGuard)
+
     @Post('/edit')
     async editSpaceShip(@Body() data: editSpaceShipDto,@Res() res: Response){
         const editSpaceShip = this.spaceShip.editSpaceShip(data)
         res.status(HttpStatus.ACCEPTED).json({"message":'Space Ship editado com sucesso'})
     }
 
-    @UseGuards(AuthGuard)
     @Get('/list')
     async getSpaceShips(){
         return this.spaceShip.listSpaceShips()
@@ -30,7 +29,7 @@ export class SpaceShipController{
     async getSpaceShip(@Query('id') id: string){
         return this.spaceShip.getSpaceShip(id)
     }
-    @UseGuards(AuthGuard)
+
     @Get('/delete')
     async removeSpaceShip(@Query('id') id: string,@Res() res: Response){
         const deletedSpaceShip =  this.spaceShip.deleteSpaceShip(id)

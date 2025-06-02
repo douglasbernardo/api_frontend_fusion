@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Post, Query } from "@nestjs/common";
+import { Body, Controller, Get, Post, Query, UseGuards } from "@nestjs/common";
 import { CharacterDto, editCharacterDto } from "src/dto/character.dto";
 import { CharacterService } from "./character.service";
+import { AuthGuard } from "@nestjs/passport";
 
-
+@UseGuards(AuthGuard)
 @Controller('character')
 export class CharacterController{
     constructor(private characterService: CharacterService){}
