@@ -1,10 +1,10 @@
 import { Inject, Injectable, UnauthorizedException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { LoginUserDto, UserDto } from "src/dto/user.dto";
 import { User } from "src/schemas/user.schema";
 import * as bcrypt from 'bcrypt';
 import { JwtService } from "@nestjs/jwt";
+import { CreateUserDto } from "src/dto/user/createUser.dto";
 
 @Injectable()
 export class userService {
@@ -12,7 +12,7 @@ export class userService {
         @InjectModel(User.name) private user: Model<User>,
     ){}
 
-    async addUser(data: UserDto){
+    async addUser(data: CreateUserDto){
         const passHash = await bcrypt.hash(data.pass,12)
         const user = new this.user({
             name: data.name,
