@@ -1,11 +1,8 @@
-import { Body, Injectable, UnauthorizedException } from "@nestjs/common";
-import { LoginUserDto } from "src/dto/user.dto";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { LoginUserDto } from "src/dto/user/loginUser.dto";
 import { userService } from "src/users/user.service";
 import * as bcrypt from 'bcrypt';
 import {JwtService} from '@nestjs/jwt'
-import { InjectModel } from "@nestjs/mongoose";
-import { User } from "src/schemas/user.schema";
-import { Model } from "mongoose";
 
 
 @Injectable()
