@@ -2,15 +2,15 @@ import { BadRequestException, HttpStatus, Injectable, NotFoundException, Res } f
 import { InjectModel } from "@nestjs/mongoose";
 import { Response } from "express";
 import { isValidObjectId, Model } from "mongoose";
-import { editSpaceShipDto, spaceShipDto } from "src/dto/spaceShip.dto";
+import { addSpaceShipDto } from "src/dto/spaceShip/addSpaceShip.dto";
+import { editSpaceShipDto } from "src/dto/spaceShip/editSpaceShip.dto";
 import { spaceShip } from "src/schemas/spaceShips.schema";
-
 
 @Injectable()
 export class spaceShipService{
     constructor(@InjectModel(spaceShip.name) private spaceShip: Model<spaceShip>){}
 
-    async newSpaceShip(data: spaceShipDto){
+    async newSpaceShip(data: addSpaceShipDto){
         const spaceship = new this.spaceShip({
             name: data.name,
             modelType: data.modelType,

@@ -10,11 +10,11 @@ export class UserController {
     constructor(private user: userService){}
 
     @Post('/add')
-    async addUser(@Body() data: CreateUserDto,@Res() res: Response){
+    async addUser(@Body() data: CreateUserDto){
         const addedUser = await this.user.addUser(data)
-        return res.status(201).json({
+        return {
             'message': "Usuário criado com sucesso",
             'user': addedUser
-        })
+        }
     }
 }

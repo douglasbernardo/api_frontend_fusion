@@ -1,7 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { CharacterDto, editCharacterDto } from "src/dto/character.dto";
+import { addCharacterDto } from "src/dto/character/addCharacter.dto";
+import { editCharacterDto } from "src/dto/character/editCharacter.dto";
 import { Character } from "src/schemas/character.schema";
 
 
@@ -11,7 +12,7 @@ export class CharacterService{
         @InjectModel(Character.name) private characterModel: Model<Character>
     ){}
 
-    async newCharacter(data: CharacterDto){
+    async newCharacter(data: addCharacterDto){
         const character = new this.characterModel({
             name: data.name,
             race: data.race,

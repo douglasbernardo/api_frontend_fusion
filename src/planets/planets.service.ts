@@ -1,7 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { editPlanetDto, PlanetDto } from "src/dto/planets.dto";
+import { addPlanetDto } from "src/dto/planets/addPlanet.dto";
+import { editPlanetDto } from "src/dto/planets/editPlanet.dto";
 import { Planet } from "src/schemas/planet.schema";
 
 @Injectable()
@@ -12,7 +13,7 @@ export class PlanetsService{
   async listPlanets(){
     return this.planetModel.find().exec()
   }
-  async newPlanet(data: PlanetDto){
+  async newPlanet(data: addPlanetDto){
     const planet = new this.planetModel({
       name: data.name,
       climate: data.climate,

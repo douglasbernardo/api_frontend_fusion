@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post, Query, UseGuards } from "@nestjs/common";
 import { PlanetsService } from "./planets.service";
-import { editPlanetDto, PlanetDto } from "src/dto/planets.dto";
+import { addPlanetDto } from "src/dto/planets/addPlanet.dto";
+import { editPlanetDto } from "src/dto/planets/editPlanet.dto";
 import { AuthGuard } from "../auth/auth.guard";
 
 @Controller('planets')
@@ -26,7 +27,7 @@ export class PlanetsController{
     }
 
     @Post('/add')
-    async addPlanet(@Body() data: PlanetDto){
+    async addPlanet(@Body() data: addPlanetDto){
         const addedPlanet = await this.planets.newPlanet(data)
         return {
             message: 'Planeta adicionado com sucesso',

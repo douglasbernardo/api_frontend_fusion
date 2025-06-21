@@ -1,24 +1,13 @@
 import { IsNumber, IsString } from "class-validator";
 
-export class spaceShipDto{
-    @IsString()
-    name:string;
-    @IsString()
-    modelType:string;
-    @IsString()
-    fabricator:string;
-    @IsNumber()
-    capacityPassenger: number
-}
-
 export class editSpaceShipDto{
     @IsString()
     id: string;
     @IsString()
     name:string;
-    @IsNumber()
+    @IsString()
     modelType:string;
-    @IsNumber()
+    @IsString()
     fabricator:string;
     @IsNumber()
     capacityPassenger:number;
