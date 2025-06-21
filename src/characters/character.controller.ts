@@ -1,7 +1,8 @@
 import { Body, Controller, Get, Post, Query, UseGuards } from "@nestjs/common";
-import { CharacterDto, editCharacterDto } from "src/dto/character.dto";
 import { CharacterService } from "./character.service";
 import { AuthGuard } from "../auth/auth.guard";
+import { addCharacterDto } from "src/dto/character/addCharacter.dto";
+import { editCharacterDto } from "src/dto/character/editCharacter.dto";
 
 @Controller('character')
 @UseGuards(AuthGuard)
@@ -9,7 +10,7 @@ export class CharacterController{
     constructor(private characterService: CharacterService){}
 
     @Post('/add')
-    async addCharacter(@Body() data: CharacterDto){
+    async addCharacter(@Body() data: addCharacterDto){
         const addedCharacter = await this.characterService.newCharacter(data)
         return {
             message: 'Personagem criado com sucesso',

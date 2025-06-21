@@ -1,7 +1,8 @@
 import { Body, Controller, Get, Post, Query, UseGuards } from "@nestjs/common";
 import { starSystemService } from "./starSystem.service";
-import { editstarSystemDto, starSystemDto } from "src/dto/starsystem.dto";
 import { AuthGuard } from "../auth/auth.guard";
+import { addStarSystemDto } from "src/dto/starSystem/starsystem.dto";
+import { editstarSystemDto } from "src/dto/starSystem/editStarSystem.dto";
 
 @Controller('star-system')
 @UseGuards(AuthGuard)
@@ -9,7 +10,7 @@ export class starSystemController{
     constructor(private system: starSystemService) {}
 
     @Post('/add')
-    async newstarSystem(@Body() data: starSystemDto){
+    async newstarSystem(@Body() data: addStarSystemDto){
         const addedStarSystem = await this.system.addstarSystem(data)
         return {
             message: 'Sistema estelar criado com sucesso',

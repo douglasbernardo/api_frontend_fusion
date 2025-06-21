@@ -12,7 +12,12 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
-   app.useGlobalPipes(
+   app.enableCors({
+    origin: 'https://api-frontend-fusion.onrender.com', // ou '*', se quiser permitir todos (cuidado com isso em produção)
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // se estiver usando cookies/autenticação
+  });
+  app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true, // remove campos que não estão nos DTOs
       forbidNonWhitelisted: true, // lança erro se mandar campos extras
