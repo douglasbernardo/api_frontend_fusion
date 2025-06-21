@@ -25,7 +25,7 @@ async function bootstrap() {
     }),
   );
   const port = 3000
-  app.listen(port, '0.0.0.0', (err, address) => {
+  app.listen(process.env.PORT || port, '0.0.0.0', (err, address) => {
     if (err) {
       console.error(err);
       process.exit(1);
